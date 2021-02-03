@@ -6,7 +6,7 @@ def main():
 
 def Generate_data(xmax,ymax,N):
     """
-    Randomily generates (x,y) coordinates for stars and their luminosity
+    Randomly generates (x,y) coordinates for star and their luminosity
     
     Inputs:
         xmax,ymax: the maximum point on the axis
@@ -46,7 +46,7 @@ def make_histogram():
 #ex: nx = 3 we want the xlim to be split into three pixels
 def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
     """
-    Makes the grid of where each stars fall in our grid
+    Makes the grid of where each star fall in our grid
     
     Inputs:
         x_list: x coordinates of a star
