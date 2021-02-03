@@ -16,8 +16,8 @@ def Generate_data(xmax,ymax,N):
     """
     x_list=[]
     y_list=[]
-    star_lum = np.full((1,N),1) #stays the same
-    star_flux(star_lum,1)
+    star_lum = np.array([1]*N)
+    star_lum = star_flux(star_lum,1)
 
     for i in range(N):
         x_list.append(random.uniform(0,xmax))
@@ -34,7 +34,7 @@ def star_flux(star_lum,distance):
     Outputs:
         star_flux: the flux of each star
     """
-    star_flux = star_lum/4*np.pi*(distance**2) #recalculate for change in d
+    star_flux = star_lum/(4*np.pi*(distance**2)) #recalculate for change in d
     return star_flux
 
 #nx and ny are the number of pixels in x coord and in y coord
@@ -62,7 +62,7 @@ def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
     #plotting the data
     plt.scatter(x_list,y_list,c='orange',marker="*") #should plot the points as little stars
 
-def calc_std(d_min,d_max,d_steps,xarray,yarray):
+def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
     """
     Function that simulates zooming in on a star region 
     (stars have positions defined by the input arrays)
@@ -112,20 +112,23 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray):
     sbf_array = [] #array of surface brightness fluctuations
     for d in distances:
         view_limit = get_distance_rescaling(d, field_length)
-        hist_out, x_edges, y_edges = make_histogram(xarray, yarray, view_limit, numBins)
+        hist_out = get_density_field(d, field_length, xarray, yarray, numBins, plotme)
         std = np.sqrt(np.mean(hist_out))
-        f = star_flux(luminosity,d)
-        sbf = f*std
+        f = star_flux(star_lum,d)
+        sbf = f[0]*std
         sbf_array.append(sbf)
     d_inverse = 1/distances
+    plt.figure()
     plt.subplot(1, 2, 1)
     plt.plot(distances,sbf_array)
     plt.xlabel("d",fontsize=17)
     plt.ylabel("$\sigma_{F_*}$",fontsize=17)
     plt.subplot(1, 2, 2)
+    
     plt.plot(d_inverse,sbf_array)
     plt.xlabel("1/d",fontsize=17)
     plt.ylabel("$\sigma_{F_*}$",fontsize=17)
+    #plt.ylim(0,0.008)
     plt.tight_layout()
     plt.show()
 
@@ -194,17 +197,19 @@ def get_density_field(distance, field_length, x_list, y_list, numBins, plot_dens
         
     return density_hist
 
+
+#main function space
+
 field_length = 128
-numBins = 10
-N=500
-
-xmax = field_length; ymax = field_length
-    
-xarray = xmax*np.random.rand(N)
-yarray = ymax*np.random.rand(N)
-
-luminosity = 1
+numBins = 50
+N=1000
 d_min = 0.5
 d_max = 1
-calc_std(d_min,d_max,100,xarray,yarray)      
+N_distances = 1000
+
+x_list,y_list,star_lum = Generate_data(field_length, field_length, N)
+x_list = np.array(x_list)
+y_list = np.array(y_list)
+#make_grid(x_list,y_list,get_distance_rescaling(d_min,field_length),get_distance_rescaling(d_min,field_length),numBins,numBins)
+calc_std(d_min,d_max,N_distances,x_list,y_list,False)      
 
