@@ -51,13 +51,13 @@ def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
         numBins_y: number of bins wanted in y-axis
     """
 
-    x_pixels = xlim/numBins_x
-    y_pixels = ylim/numBins_y
-    for i in range(nx+1):
-        plt.vlines(x_pixels*i,0,ylim,colors='black',linestyles='solid')
+    x_pixels = xmax/numBins_x
+    y_pixels = ymax/numBins_y
+    for i in range(numBins_x+1):
+        plt.vlines(x_pixels*i,0,ymax,colors='black',linestyles='solid')
     
-    for j in range(ny+1):
-        plt.hlines(y_pixels*j,0,xlim,colors='black',linestyles='solid')
+    for j in range(numBins_y+1):
+        plt.hlines(y_pixels*j,0,xmax,colors='black',linestyles='solid')
     
     #plotting the data
     plt.scatter(x_list,y_list,c='orange',marker="*") #should plot the points as little stars
@@ -155,7 +155,7 @@ def make_histogram(x_list, y_list, view_limit, numBins):
     range_hist = [[0, view_limit], [0, view_limit]]
     
     #Generate the 2D histogram
-    density_hist, xedges, yedges = np.histogram2d(y_list, x_list, bins = numBins, range=range_hist, density=Falso)
+    density_hist, xedges, yedges = np.histogram2d(y_list, x_list, bins = numBins, range=range_hist, density=False)
 
     return density_hist, xedges, yedges
 
