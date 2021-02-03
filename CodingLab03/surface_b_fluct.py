@@ -61,6 +61,7 @@ def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
     
     #plotting the data
     plt.scatter(x_list,y_list,c='orange',marker="*") #should plot the points as little stars
+    plt.title('Field of View at Distance Scale 1')
 
 def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
     """
@@ -87,6 +88,8 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
         y-positions of each star in max-size grid
     fluxarray : Nx1 array of fluxes for each star
         flux values of each star in max-size grid
+    plotme : Bool
+        switch for plotting the histogram output at each distance
     Returns
     -------
     Plot of brightness fluctuations versus 1/distance.
@@ -111,21 +114,23 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
     #loop through all distances and calculate SBF each time
     sbf_array = [] #array of surface brightness fluctuations
     for d in distances:
-        view_limit = get_distance_rescaling(d, field_length)
+        #view_limit = get_distance_rescaling(d, field_length)
         hist_out = get_density_field(d, field_length, xarray, yarray, numBins, plotme)
-        std = np.sqrt(np.mean(hist_out))
+        norm = np.mean(hist_out)
+        #std = np.std(hist_out)/norm #equivalent expressions in a Poisson dist
+        std = 1/np.sqrt(norm) #equivalent expressions in a Poisson dist
         f = star_flux(star_lum,d)
         sbf = std
         sbf_array.append(sbf)
     d_inverse = 1/distances
     plt.figure()
     plt.subplot(1, 2, 1)
-    plt.plot(distances,sbf_array)
+    plt.plot(distances,sbf_array, 'o')
     plt.xlabel("d",fontsize=17)
     plt.ylabel("$\sigma_{F_*}$",fontsize=17)
     plt.subplot(1, 2, 2)
     
-    plt.plot(d_inverse,sbf_array)
+    plt.plot(d_inverse,sbf_array, 'o')
     plt.xlabel("1/d",fontsize=17)
     plt.ylabel("$\sigma_{F_*}$",fontsize=17)
     #plt.ylim(0,0.008)
@@ -173,7 +178,7 @@ def get_distance_rescaling(distance, field_length):
     #Rescale the view size by the rescaling factor, and truncate to an integer value
     view_limit = int(rescaling*field_length)
     
-    return view_limit
+    return view_limit, rescaling
 
 def get_density_field(distance, field_length, x_list, y_list, numBins, plot_density):
     """
@@ -181,8 +186,9 @@ def get_density_field(distance, field_length, x_list, y_list, numBins, plot_dens
     corresponding to the field of view at that distance
     """
     #Get the upper limit for viewing field coordinates
-    view_limit = get_distance_rescaling(distance, field_length)
+    view_limit, rescaling = get_distance_rescaling(distance, field_length)
     
+    numBins = int(numBins*rescaling)
     #Get the 2D histogram of star density in the specified viewing field
     density_hist, xedges, yedges = make_histogram(x_list, y_list, view_limit, numBins)
     
@@ -198,18 +204,26 @@ def get_density_field(distance, field_length, x_list, y_list, numBins, plot_dens
     return density_hist
 
 
-#main function space
+#Run & analyze the simulation
 
-field_length = 128
+#Initialize parameters
+field_length = 32
 numBins = 50
 N=1000
 d_min = 0.5
 d_max = 1
-N_distances = 1000
+N_distances = 2
+view_limit, rescaling = get_distance_rescaling(d_max,field_length)
 
+#Initialize the field of stars
 x_list,y_list,star_lum = Generate_data(field_length, field_length, N)
 x_list = np.array(x_list)
 y_list = np.array(y_list)
-#make_grid(x_list,y_list,get_distance_rescaling(d_min,field_length),get_distance_rescaling(d_min,field_length),numBins,numBins)
-calc_std(d_min,d_max,N_distances,x_list,y_list,False)      
+
+#Plot the field of stars
+make_grid(x_list,y_list,view_limit,view_limit,numBins,numBins)
+
+#Simulate zooming in on a star region from d_min to d_max, in N_distances steps, and plot the output data
+plot_hist = False #if True, plot the histogram output at each distance
+calc_std(d_min,d_max,N_distances,x_list,y_list,plot_hist)      
 
