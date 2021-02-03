@@ -115,7 +115,7 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
         hist_out = get_density_field(d, field_length, xarray, yarray, numBins, plotme)
         std = np.sqrt(np.mean(hist_out))
         f = star_flux(star_lum,d)
-        sbf = f[0]*std
+        sbf = std
         sbf_array.append(sbf)
     d_inverse = 1/distances
     plt.figure()
@@ -158,7 +158,7 @@ def make_histogram(x_list, y_list, view_limit, numBins):
     range_hist = [[0, view_limit], [0, view_limit]]
     
     #Generate the 2D histogram
-    density_hist, xedges, yedges = np.histogram2d(y_list, x_list, bins = numBins, range=range_hist, density=False)
+    density_hist, xedges, yedges = np.histogram2d(y_list, x_list, bins = numBins, range=range_hist, density=True)
 
     return density_hist, xedges, yedges
 
