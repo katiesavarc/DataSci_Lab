@@ -216,13 +216,9 @@ numBins = 10
 N=1000
 d_min = 0.5
 d_max = 1
-<<<<<<< HEAD
+
 N_distances = 1000
 view_limit, rescaling = get_distance_rescaling(d_max,field_length)
-=======
-N_distances = 100
-view_limit, rescaling = get_distance_rescaling(d_min,field_length)
->>>>>>> e1706c881270617639e2746bc6db78266b7ef82d
 
 #Initialize the field of stars
 x_list,y_list,star_lum = Generate_data(field_length, field_length, N)
