@@ -120,7 +120,7 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
         #std = np.std(hist_out)/norm #equivalent expressions in a Poisson dist
         std = 1/np.sqrt(norm) #equivalent expressions in a Poisson dist
         f = star_flux(star_lum,d)
-        sbf = std
+        sbf = f[0]*std
         sbf_array.append(sbf)
     d_inverse = 1/distances
     plt.figure()
@@ -208,11 +208,11 @@ def get_density_field(distance, field_length, x_list, y_list, numBins, plot_dens
 
 #Initialize parameters
 field_length = 32
-numBins = 50
+numBins = 10
 N=1000
 d_min = 0.5
 d_max = 1
-N_distances = 2
+N_distances = 1000
 view_limit, rescaling = get_distance_rescaling(d_max,field_length)
 
 #Initialize the field of stars
