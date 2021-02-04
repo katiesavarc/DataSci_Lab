@@ -39,7 +39,7 @@ def star_flux(star_lum,distance):
 
 #nx and ny are the number of pixels in x coord and in y coord
 #ex: nx = 3 we want the xlim to be split into three pixels
-def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
+def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y,d):
     """
     Makes the grid of where each star fall in our grid
     
@@ -61,8 +61,9 @@ def make_grid(x_list,y_list,xmax,ymax,numBins_x,numBins_y):
     
     #plotting the data
     plt.scatter(x_list,y_list,c='orange',marker="*") #should plot the points as little stars
-    plt.title('Field of View at Distance Scale 1')
-
+    plt.title('Field of View at Distance Scale 0.5')
+    plt.xlim(0,xmax)
+    plt.ylim(0,ymax)
 def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
     """
     Function that simulates zooming in on a star region 
@@ -113,12 +114,14 @@ def calc_std(d_min,d_max,d_steps,xarray,yarray,plotme):
     
     #loop through all distances and calculate SBF each time
     sbf_array = [] #array of surface brightness fluctuations
+    std_array =[]
     for d in distances:
         #view_limit = get_distance_rescaling(d, field_length)
         hist_out = get_density_field(d, field_length, xarray, yarray, numBins, plotme)
         norm = np.mean(hist_out)
         #std = np.std(hist_out)/norm #equivalent expressions in a Poisson dist
         std = 1/np.sqrt(norm) #equivalent expressions in a Poisson dist
+        std_array.append(std)
         f = star_flux(star_lum,d)
         sbf = f[0]*std
         sbf_array.append(sbf)
@@ -200,6 +203,7 @@ def get_density_field(distance, field_length, x_list, y_list, numBins, plot_dens
         plt.title('Star Density at distance scale ' + str(distance))
         plt.xlabel('X')
         plt.ylabel('Y')
+        plt.colorbar()
         
     return density_hist
 
@@ -212,8 +216,13 @@ numBins = 10
 N=1000
 d_min = 0.5
 d_max = 1
+<<<<<<< HEAD
 N_distances = 1000
 view_limit, rescaling = get_distance_rescaling(d_max,field_length)
+=======
+N_distances = 100
+view_limit, rescaling = get_distance_rescaling(d_min,field_length)
+>>>>>>> e1706c881270617639e2746bc6db78266b7ef82d
 
 #Initialize the field of stars
 x_list,y_list,star_lum = Generate_data(field_length, field_length, N)
@@ -221,9 +230,10 @@ x_list = np.array(x_list)
 y_list = np.array(y_list)
 
 #Plot the field of stars
-make_grid(x_list,y_list,view_limit,view_limit,numBins,numBins)
+#make_grid(x_list,y_list,view_limit,view_limit,numBins,numBins,d_min)
+
 
 #Simulate zooming in on a star region from d_min to d_max, in N_distances steps, and plot the output data
-plot_hist = False #if True, plot the histogram output at each distance
+plot_hist = True #if True, plot the histogram output at each distance
 calc_std(d_min,d_max,N_distances,x_list,y_list,plot_hist)      
 
