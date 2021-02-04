@@ -7,8 +7,8 @@ Noah LeFrancois( ): Coded the histogram function as well as the rescaling functi
 we change distances.
 
 Katie Savard(260678183): Calculated the standard deviation and made the plots for STD as
-function od distance.
+function of distance.
 
 As a team: We all troubleshooted the final merged code as well as wrote the final 
 delieverables(The final plots as well as the two text files). We also reviewed each others
-code vis github on pull requests. 
+code via github on pull requests. 
