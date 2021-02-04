@@ -1,12 +1,13 @@
 Our code randomily generates (x,y) coordinates for fake stars and their luminosity. 
 In this case we set all stars luminosity to a set value of 1. We plot the 2D Coordinates
 in a histogram so we can extract the number of stars per bin. Using the star density we can 
-calculate the standard deviation. What we expect is that the standard deviation will scale as the 
-square root of the mean. If each star has a flux, we times the std by this flux and we expect
-it to scale 1/distance. 
+calculate the standard deviation, which we divide by the mean to nomalize the spread to make them 
+comparable when using different distances. We then plot the normalized STD as a function od distance and
+1/distance, What we expect is that the standard deviation will scale as the square root of the 
+mean. If each star has a flux, we times the std by this flux and we expect it to scale as 1/distance. 
 
 To show that our standard deviation scales as 1/distance we set our initial field of view
-as a max distance of 1 and we scale down to 0.5 and we take multiple data points of std for different 
+as a max distance of 1 and we scale down to 0.5 and we take multiple data points of STD for different 
 distances. 
 
 In Finalplot.png the last plot of Sigma_F we plot it against distance and 1/distance. We can see that in
