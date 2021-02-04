@@ -1,56 +1,20 @@
-1) somehow make a grid that represents our pixels( each 1x1 will be our "pixel box")
+Our code randomily generates (x,y) coordinates for fake stars and their luminosity. 
+In this case we set all stars luminosity to a set value of 1. We plot the 2D coordinates onto a grid, and use a 
+histogram to extract the number of stars per bin. Using the number of stars per bin, we
+calculate the standard deviation, which we divide by the mean to nomalize the spread to make them 
+comparable when using different distances. We then plot this normalized standard deviation as a function of distance and
+1/distance. What we expect is that the standard deviation multiplied by the flux (the surface brightness fluctuations) will scale as 1/distance. 
 
-1.12) plot the image with the "objects" (scatter plot) input(d,data_arr(Nx2))
+To show that our standard deviation scales as 1/distance we set our initial field of view
+as a max distance of 1d and we increment down to 0.5d, calculating a standard deviation for each distance increment.
 
-2) randomilly generate "objects" into the grid
+In final_plot1.png, the last plot shows Sigma_F as a function of distance and 1/distance. We can see that in
+the 1/distance subplot the trend is linear where in the distance subplot it is not. This proves that Sigma_F
+scales as 1/distance. We also included the histogram figures to show how the bins, as well as number of stars in each bin, change as a function of
+distance. The top plot is a simple grid plot where we show the bin
+limits as well as the actual data points and where they fall. This shows how the data we generated is
+random, and how its disttibution becomes more uniform at larger distances.
 
-- generate objects 2d coord inside our sized grid
-
-- Noah has code that will tell how many objects fall within one pixel(histo version)
-2.1) Generate_Stars([x-range], [y-range], N(number od objects wanted)) -> data_arr(Nx2)
-
-3) standard deviation give by sigma = sqrt( mean # of stars per period(?))
-3.1) Calc_STD(d_arr) -> std_array();
-
-4) sigma = 1\d, we can find our d
-
-
-5) change the pixels size to change the d
-
-Want to use the same data as before, just want to change the pixel size
-Make the biggest grid d = 1, then when scaling down should fall as ~r^2 
-same number pixels, smaller area 
-
-5.1) func that takes in the new bounds and filter out objects not inside the wanted
-bounds
-
-
-FINAL)
-plot - sigma(1/D) for different scale changes
-plot - 3D histogram for a d, use two/three different d to show how the bins are different
-
-
-Group work:
-
-- grid and generate objects -> plot of the grid and save the data as 2 (Nx1) array -INGRID 
-input (d, 
-output: two Nx1 array of coordinate for objects (x,y) 
-
-- histugram function plots (check that number of elements is greater than bins) -NOAh
-- extra funct(d) -> (xlim, ylim) you take that xlim and ylim and divide by numpixels to get pixel 
-sub bounds
-input: (d,x_array,y_array)
-output:  [list of edges of bins, array of value in each bin]
-
-- STD calculations and plotting the final 'clean' plots -KATIE
-input: (array of value in each bin)
-*loop it over different distances*
-output: our graphs plz
-
-+main function that starts
-
-
-extensions to think about:
-Different lum per object
-if time, make objects into point spread functions
+Extensions to think about to further this idea: We could have given random luminosities (instead of the set value of 1) to the star to simulate a better
+galaxy and represent each star as a point spread function. Our code is set up to be able to implement these changes easily. 
 
