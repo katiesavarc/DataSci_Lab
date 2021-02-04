@@ -3,7 +3,7 @@ Group work:
 Ingrid Gendron(260797713): Coded the grid plot functions, and the function to generate
 the data.
 
-Noah LeFrancois( ): Coded the histogram function as well as the rescaling function when 
+Noah LeFrancois(260706235): Coded the histogram function as well as the rescaling function when 
 we change distances.
 
 Katie Savard(260678183): Calculated the standard deviation and made the plots for STD as
