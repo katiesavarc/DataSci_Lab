@@ -1,0 +1,22 @@
+=== PHYS 321 - Lab 3 ===
+Group 2 (AM lab)
+
+Students:
+Noah LeFrancois nlefrancois6
+Katie Savard katiesavarc <=
+Ingrid Gendron igendr1
+
+2/2 some evidence of merging in git history
+4/4 description of code and how it works (whether in Jupyter notebook or text file)
+1/1 text file describing division of labour.
+8/8 simulation code 
+	2/2 reasonable comments
+	2/2 minimal hard coding
+	4/4 correctness of code
+4/4 analysis code 
+	2/2 reasonable comments + minimal hard coding
+	2/2 correct quantities computed (e.g., standard deviation of flux)
+3/3 final plot visual components (axis labels etc.)
+3/3 final plot that illustrates things correctly
+
+Total 25/25
