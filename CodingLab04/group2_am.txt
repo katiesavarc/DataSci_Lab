@@ -1,0 +1,49 @@
+=== PHYS 321 - Lab 4 ===
+Group 2 (AM lab)
+
+Students:
+Noah LeFrancois nlefrancois6
+Katie Savard katiesavarc <=
+Ingrid Gendron igendr1
+
+8/8 Impose cuts on the data
+	2/2 Redshift cut
+	2/2 Magnitude cut
+	3/3 Extinction correction
+	1/1 Color-cut
+
+8/8 Estimate absolute magnitude
+	2/2 Estimate luminosity distance
+	2/2 Correct for Extinction
+	2/2 Estimate absolute magnitude
+	2/2 Final answer
+
+4/4 K-correction: Calling right function with appropriate input parameters
+
+2/2 Correct absolute magnitude: Knowledge of using right formula
+
+14/14 First attempt to luminosity function
+	6/6 Estimate correctly comoving volume
+	8/8 Estimate luminosity function
+
+4/4 Plotting LF
+	2/2 Plot
+		Nitty note: x-axis should be log scale, not linear scale of log
+	2/2 Code
+
+6/6 Plotting 2D histogram
+	2/2 Estimate absolute magnitude correctly
+	4/4 Plotting code
+
+4/4 sharp edge on the 2D histogram
+	2/2 Explanation
+	2/2 Plot
+
+6/10 V/V_max
+	2/4 Implement V/V_max
+	4/6 Plot corrected luminosity function
+
+Bonus + 5
+Weird drawing - 5
+
+Total 56/60
