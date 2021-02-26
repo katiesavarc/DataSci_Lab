@@ -45,5 +45,30 @@ class test_tools():
         # Make sure that tools.picky raises an error if the
         # wrong type is inputted
         nt.assert_raises(TypeError, tools.picky, 'hey')
+    
+    def test_equal_length(self):
+        ## test arrays are same length
+        filename = "HT.dat"
+        time, s, err = tools.load_dat(filename)
+        len_time = len(time)
+        len_s = len(s)
+        len_err = len(err)
+        nt.assert_equal(len_time, len_s, len_err)
+    def test_tzero(self):
+        ## test time at 0 is zero
+        filename = "HT.dat"
+        time, s, err = tools.load_dat(filename)
+        t0 = time[0]
+        nt.assert_equal(t0, 0)
+    def test_nonzero_length(self):
+        ## test array length > 0
+        filename = "HT.dat"
+        time, s, err = tools.load_dat(filename)
+        lenZero_time = (len(time)==0)
+        lenZero_s = (len(s)==0)
+        lenZero_err = (len(err)==0)
+        nt.assert_false(lenZero_s)
+        nt.assert_false(lenZero_time)
+        nt.assert_false(lenZero_err)
 
 
