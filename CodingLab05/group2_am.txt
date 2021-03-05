@@ -1,0 +1,55 @@
+=== PHYS 321 - Lab 5 ===
+Group 2 (AM lab)
+
+Students:
+Noah LeFrancois nlefrancois6
+Katie Savard katiesavarc <=
+Ingrid Gendron igendr1
+
+== M&Ms ==
+2/2 correct algebraic form for likelihood p(d|b). No need for combinatorical prefactor.
+
+3/4 prior p(b)
+	2/2 working code
+        Why are you excluding b = 0 or b = 1?
+	1/2 for the prior not having unphysical things (e.g., no negative values for b and no values greater than 1)
+        Although you implicitly assume 0 < b < 1, your code does not handle that correctly.
+
+11/11 plotting distributions
+	3/3 prior
+	3/3 likelihood
+	3/3 posterior
+	2/2 normalizing posterior
+
+6/6 combining data
+	2/2 prior
+	2/2 likelihood
+	2/2 posterior
+
+1/5 comparing the two methods 
+	0/2 saying that the two methods give the same answer
+	1/2 showing the graph
+	0/1 saying that more data -> narrower posterior.
+
+2/2 a reasonable conclusion regarding which M&Ms factory.
+
+4/4 n% credible region code that works!
+    See solution for much easier code
+
+== Radioactive source ==
+3/3 correct likelihood for p(x| lambda)
+
+8/12 
+	1/3 likelihood
+	1/3 posterior
+	3/3 prior
+	3/3 series of sensible graphs (including things like proper axis labels etc.)
+        You didn't find it weird to have null probability distribution for N > 30?
+
+3/6
+	1/2 after 10 measurements
+	1/2 after 50
+	1/2 after 99
+        May have been good if you're posteriors were ok; hard to tell.
+
+Total 43/55
