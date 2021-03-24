@@ -1,0 +1,27 @@
+=== PHYS 321 - Lab 6 ===
+Group 2 (AM lab)
+
+Students:
+Noah LeFrancois nlefrancois6
+Katie Savard katiesavarc <=
+Ingrid Gendron igendr1
+
+4/4: Two tests. For each test, one point for a reasonable thing to test and another point for correct implementation
+
+3/3: Read in data, re-centered, and converted units for x, y, and yerr
+
+3/3: Properly sampled priors using numpy (correct bounds, adequately dense sampling with at least ~75 points along each axis)
+3/3: Correct implementation of "posterior" equation
+
+3/3: Correctly marginalized over all parameters but epsilon
+
+2/2: Well formatted plots for marginalized distributions for epsilon (axis labels)
+
+2/2: Well formatted contour plot for alpha vs beta (axis and colour bar labels)
+
+4/4: Well formatted MAP plots (labels, errorbars, reasonable fits)
+
+2/2: Correctly computed evidences
+2/2: Compared evidences and commented on which model was preferred
+ 
+Total: 28/28
