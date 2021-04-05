@@ -1,0 +1,76 @@
+=== PHYS 321 - Lab 8 ===
+Group 2 (AM lab)
+
+Students:
+Noah LeFrancois nlefrancois6
+Katie Savard katiesavarc <=
+Ingrid Gendron igendr1
+
+4/4 Q1
+    2/2 Correctly inputted values (subtract 1 for excessively rounded numbers).
+    2/2 Correct exoplanet transit lightcurve (subtract 1 if there isn’t ~30 minutes on either side of the transit; doesn’t have to be super exact)
+
+6/6 Q2
+    2/2 Correctly coding up the Planck function.
+    1/1 Integrating and multiply by pi*r^2 correctly.
+    2/2 Correct light curve
+    1/1 Saying that the eclipse depth is smaller than the transit depth
+
+6/6 Q3
+    3/3 Minimization
+        1/1 Updating the correct parameters
+        1/1 Computing the mean-square goodness of fit
+        1/1 Actual optimization
+    3/3 Lightcurves
+        2/2 1 for each curve
+        1/1 Being generally correct
+
+41/42 Q4
+    2/2 New planet
+        2/2 Correctly inputted values (subtract 1 for excessively rounded numbers).
+    2/2 Detector sensitivity
+        2/2 Polynomial function (ok to use scipy; order of polynomial terms doesn’t matter)
+    4/4 Exoplanet signal
+        4/4 Function
+            1/1 Correct inputs
+            1/1 Correct parameter updates
+            1/1 Compute new light curve
+            1/1 Computing and multiplying detector calibration function
+    9/9 Prior, Likelihood, Posterior
+        4/4 Prior
+            1/1 point Updating planet parameters
+            1/1 Checking rp
+            1/1 Checking L
+            1/1 point Returning 0 vs -np.inf
+        3/3 Likelihood
+            2/2 Correct log likelihood
+            1/1 Generating model correctly by feeding into previous function correctly
+        2/2 Posterior
+            1/1 All necessary inputs
+            1/1 Combining prior and likelihood appropriately
+    2/2 Running MCMC (1 for each MCMC run)
+    11/11 Looking at results
+        1/1 Log probability plot
+        6/6
+            2/2 Median values
+            2/2 + errors
+            2/2 – errors; because of the randomness of MCMC, values don’t need to match exactly, but should be close
+        2/2 Plot comparison of uncalibrated data + uncalibrated model
+        2/2 Plot comparison of calibrated data + model
+    2/2 Phasecurve peak
+        1/1 Correct offset
+        1/1 Saying winds blow to the west
+    2/2 Temperatures (1 for each correctly computed temperature)
+    7/8 Dayside and Nightside temperatures
+        3.5/4 Dayside
+            1/1 Plugging in values from chains into inversePlanck
+            0.5/1 Histogram
+            1/1 68% credibility region
+            1/1 95% credibility region
+        3.5/4 Nightside
+            1/1 Plugging in values from chains into inversePlanck
+            0.5/1 Histogram
+            1/1 68% credibility region
+            1/1 95% credibility region
+
+Total: 57/58
